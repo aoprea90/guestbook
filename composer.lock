@@ -2653,5 +2653,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+
+    "platform-pr": []
 }
