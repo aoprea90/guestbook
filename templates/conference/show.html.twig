@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conference {{ conference }}{% endblock %}
+
+{% block body %}
+    <h2>Welcome! Conference {{ conference }}</h2>
+    {% if comments|length > 0 %}
+        {% for comm in comments %}
+            <h3>Comment {{ comm.id }} : {{ comm.text }}</h3>
+            <h3>Author: {{ comm.author }}</h3>
+            <small>Date: {{ comm.createdAt|format_datetime('medium', 'short') }}</small>
+        {% endfor %}
+
+        {% if previous >= 0 %}
+            <a href="{{ path('conference', { id: conference.id, offset: previous }) }}">Previous</a>
+        {% endif %}
+        {% if next < comments|length %}
+            <a href="{{ path('conference', { id: conference.id, offset: next }) }}">Next</a>
+        {% endif %}
+    {% else %}
+        <div>No comments have been posted yet for this conference.</div>
+    {% endif %}
+{% endblock %}
